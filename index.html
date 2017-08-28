@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <title>Document</title>
+</head>
+
+<body>
+   <button id="smnumb-btn" onclick="smNumbGen()">sm</button>
+   <button id="lgnumb-btn" onclick="lgNumbGen()">lg</button>
+   <div class="crystals-div">
+      <button class="btn1 crystal-btn"></button>
+      <button class="btn2 crystal-btn"></button>
+      <button class="btn3 crystal-btn"></button>
+      <button class="btn4 crystal-btn"></button>
+   </div>
+
+   <script>
+      var lgNumb = "";
+      var smNumb = "";
+      var smNumbArray = [];
+      var sumTotalArray = [];
+      var wins = "";
+      var loses = "";
+
+      function lgNumbGen() {
+         lgNumb = Math.floor(Math.random() * 101) + 19;
+         console.log(lgNumb);
+      }
+
+      function numbGenCaller() {
+         function smNumbGen() {
+            smNumb = Math.ceil(Math.random() * 12);
+            console.log(smNumb);
+            smNumbArray.push("+" + smNumb);
+         }
+         smNumbGen();
+         smNumbGen();
+         smNumbGen();
+         smNumbGen();
+      }
+
+      lgNumbGen();
+      numbGenCaller();
+
+      console.log(smNumbArray);
+
+      function resetValues() {
+         smNumbArray = [];
+         sumTotalArray = [];
+
+      }
+
+      $(document).ready(function () {
+         $(".crystal-btn").on("click", function () {
+            // console.log($(this).attr("class"));
+            if ($(this).attr("class") == "btn1 crystal-btn") {
+               sumTotalArray.push(smNumbArray[0]);
+            
+            }
+            if ($(this).attr("class") == "btn2 crystal-btn") {
+               sumTotalArray.push(smNumbArray[1]);
+              
+            }
+            if ($(this).attr("class") == "btn3 crystal-btn") {
+               sumTotalArray.push(smNumbArray[2]);
+               
+            }
+
+            if ($(this).attr("class") == "btn4 crystal-btn") {
+               sumTotalArray.push(smNumbArray[3]);
+             
+            }
+            var sumTotalArrayJoined = sumTotalArray.join("")
+
+
+            var sumTotalJoinedEval = eval(sumTotalArray.join(""));
+            console.log(sumTotalJoinedEval);
+
+            if (lgNumb == sumTotalJoinedEval && sumTotalJoinedEval != "") {
+               console.log("We Won");
+               wins += 1;
+               console.log(wins);
+               resetValues();
+               lgNumbGen();
+               numbGenCaller();
+               console.log(smNumbArray);
+            }
+
+            if (lgNumb < sumTotalJoinedEval) {
+               console.log("Sorry but you lost");
+               loses += 1;
+               console.log(loses);
+               resetValues();
+               lgNumbGen();
+               numbGenCaller();
+            }
+         });
+      });
+
+
+
+
+   </script>
+
+</body>
+
+</html>
