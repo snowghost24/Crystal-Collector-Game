@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
    var lgNumb = "";
    var smNumb = "";
    var smNumbArray = [];
@@ -6,12 +7,14 @@ $(document).ready(function () {
    var wins = "";
    var loses = "";
 
+   // this function generates the value of the larger number
    function lgNumbGen() {
       lgNumb = Math.floor(Math.random() * 101) + 19;
       console.log(lgNumb);
-      document.querySelector(".lg-rand").innerHTML = lgNumb;
+      $(".lg-rand").html(lgNumb);
    }
 
+   //This function generates 4 smaller number and pushed them into an array
    function numbGenCaller() {
       function smNumbGen() {
          smNumb = Math.ceil(Math.random() * 12);
@@ -24,18 +27,21 @@ $(document).ready(function () {
       smNumbGen();
    }
 
+   //These two calls initialize the game 
    lgNumbGen();
    numbGenCaller();
 
    console.log(smNumbArray);
 
+   // This function empties the arrays and sets current score value zero
    function resetValues() {
       smNumbArray = [];
       sumTotalArray = [];
-      document.querySelector(".sm-rand").innerHTML = 0;
+      $(".sm-rand").html(0);
+      // document.querySelector(".sm-rand").innerHTML = 0;
    }
 
-
+   // This function listens for click for click of gems and pushes the value into a sum total array
    $(".crystal-btn").on("click", function () {
       // console.log($(this).attr("class"));
       if ($(this).attr("class") == "flip3D btn1 crystal-btn") {
@@ -53,14 +59,17 @@ $(document).ready(function () {
          sumTotalArray.push(smNumbArray[3]);
 
       }
+
+// These two methods join the arrays and evaluates their mathematical value
       var sumTotalArrayJoined = sumTotalArray.join("")
-
-
       var sumTotalJoinedEval = eval(sumTotalArray.join(""));
 
 
       console.log(sumTotalJoinedEval);
-      document.querySelector(".sm-rand").innerHTML = sumTotalJoinedEval;
+      // document.querySelector(".sm-rand").innerHTML = sumTotalJoinedEval;
+      $(".sm-rand").html(sumTotalJoinedEval);
+
+      // This if statements handle winning and losing
 
       if (lgNumb == sumTotalJoinedEval && sumTotalJoinedEval != "") {
          console.log("We Won");
