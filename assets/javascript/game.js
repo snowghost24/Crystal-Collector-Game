@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+//here we set empty variable
    var lgNumb = "";
    var smNumb = "";
    var smNumbArray = [];
@@ -30,7 +30,6 @@ $(document).ready(function () {
    //These two calls initialize the game 
    lgNumbGen();
    numbGenCaller();
-
    console.log(smNumbArray);
 
    // This function empties the arrays and sets current score value zero
@@ -38,12 +37,10 @@ $(document).ready(function () {
       smNumbArray = [];
       sumTotalArray = [];
       $(".sm-rand").html(0);
-      // document.querySelector(".sm-rand").innerHTML = 0;
    }
 
    // This function listens for click for click of gems and pushes the value into a sum total array
    $(".crystal-btn").on("click", function () {
-      // console.log($(this).attr("class"));
       if ($(this).attr("class") == "flip3D btn1 crystal-btn") {
          sumTotalArray.push(smNumbArray[0]);
       }
@@ -70,14 +67,12 @@ $(document).ready(function () {
       $(".sm-rand").html(sumTotalJoinedEval);
 
       // This if statements handle winning and losing
-
       if (lgNumb == sumTotalJoinedEval && sumTotalJoinedEval != "") {
          console.log("We Won");
          alert("Congratulations. You Won!");
          wins++;
          $("#win-count").html(wins);
          console.log(wins);
-         
          resetValues();
          lgNumbGen();
          numbGenCaller();
