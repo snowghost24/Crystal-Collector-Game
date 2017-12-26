@@ -73,9 +73,11 @@ $(document).ready(function () {
 
       if (lgNumb == sumTotalJoinedEval && sumTotalJoinedEval != "") {
          console.log("We Won");
+         alert("Congratulations. You Won!");
          wins++;
          $("#win-count").html(wins);
          console.log(wins);
+         
          resetValues();
          lgNumbGen();
          numbGenCaller();
@@ -83,6 +85,7 @@ $(document).ready(function () {
       }
 
       if (lgNumb < sumTotalJoinedEval) {
+            alert("sorry you lost");
          console.log("Sorry but you lost");
          loses++;
          $("#loss-count").html(loses);
